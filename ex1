@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Information and Marks</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: start;
+            align-items: start;
+            height: 100vh;
+        }
+        .container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 100%;
+        }
+        h1 {
+            text-align: start;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+        }
+        input[type="text"], input[type="email"], input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #282aa7;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #282aa7;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #f0f0f0;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Enter Your Information</h1>
+    <form id="marksForm">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="javascript">Marks in JavaScript:</label>
+        <input type="number" id="javascript" name="javascript" required min="0" max="100">
+
+        <label for="maths">Marks in Maths:</label>
+        <input type="number" id="maths" name="maths" required min="0" max="100">
+
+        <label for="csharp">Marks in C#:</label>
+        <input type="number" id="csharp" name="csharp" required min="0" max="100">
+
+        <button type="submit">Submit</button>
+    </form>
+
+    <div class="result" id="result"></div>
+</div>
+
+<script>
+    document.getElementById('marksForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+        
+        // Get form values
+        const name = document.getElementById('name').value;
+        const email = document.getElementById('email').value;
+        const jsMarks = parseFloat(document.getElementById('javascript').value);
+        const mathsMarks = parseFloat(document.getElementById('maths').value);
+        const csharpMarks = parseFloat(document.getElementById('csharp').value);
+        
+        // Calculate average
+        const average = ((jsMarks + mathsMarks + csharpMarks) / 3).toFixed(2);
+
+        // Calucalate Sum
+        const sum = (jsMarks + mathsMarks + csharpMarks).toFixed(2);
+
+        
+        // Display results
+        document.getElementById('result').innerHTML = `
+            <h2>Student Details</h2>
+            <p><strong>Name:</strong> ${name}</p>
+            <p><strong>Email:</strong> ${email}</p>
+            <p><strong>Marks in JavaScript:</strong> ${jsMarks}</p>
+            <p><strong>Marks in Maths:</strong> ${mathsMarks}</p>
+            <p><strong>Marks in C#:</strong> ${csharpMarks}</p>
+            <p><strong>Average Marks:</strong> ${average}</p>
+            <p><strong>Sum Marks:</strong> ${sum}</p>
+        `;
+    });
+</script>
+
+</body>
+</html>
